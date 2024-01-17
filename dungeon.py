@@ -36,7 +36,7 @@ time.sleep(1)
 zombie_attack = 1
 zombie_defense = 0
 zombie_health = 2
-print('je loopt een kamer binnen.')
+print(f'Dapper met je nieuwe loop je de kamer binnen.')
 print('Je loopt tegen een zombie aan.')
 
 zombie_hit_damage = (zombie_attack - player_defense)
@@ -50,8 +50,9 @@ else:
 
     if player_attack_amount < zombie_attack_amount:
         print(f'In {player_attack_amount} rondes versla je de zombie.')
-        new_playerhealth = int(player_attack_amount * zombie_attack)
-        print(f'Je health is nu {new_playerhealth}.')
+        player_damage = player_attack_amount * zombie_attack
+        playerhealth = player_health - player_damage
+        print(f'Je health is nu {playerhealth}.')
     else:
         print('Helaas is de zombie te sterk voor je.')
         print('Game over.')
@@ -81,35 +82,36 @@ else:
     print('')
     time.sleep(1)
 
+
 # === [kamer 4] === #
 spin_attack = 2
 spin_defense = 0
 spin_health = 3
 print(f'Dapper met je nieuwe {item} loop je de kamer binnen.')
-print('Je ziet daar een grote spin.')
+print('Je loopt tegen een zombie aan.')
 
 spin_hit_damage = (spin_attack - player_defense)
 if spin_hit_damage <= 0:
-    print('Jij hebt een te goede verdedigign voor de spin, hij kan je geen schade doen.')
+    print('Jij hebt een te goede verdedigign voor de zombie, hij kan je geen schade doen.')
 else:
     spin_attack_amount = math.ceil(player_health / spin_hit_damage)
     
     player_hit_damage = (player_attack - spin_defense)
-    player_attack_amount = math.ceil(spin_attack / player_hit_damage)
+    player_attack_amount = math.ceil(spin_health / player_hit_damage)
 
     if player_attack_amount < spin_attack_amount:
-        print(f'In {player_attack_amount} rondes versla je de spin.')
-        new_playerhealth = int(player_attack_amount * spin_attack)
-        print(f'Je health is nu {new_playerhealth}.')
+        print(f'In {player_attack_amount} rondes versla je de zombie.')
+        player_damage = player_attack_amount * spin_attack
+        playerhealth = player_health - player_damage
+        print(f'Je health is nu {playerhealth}.')
     else:
-        print('Helaas is de spin te sterk voor je.')
+        print('Helaas is de zombie te sterk voor je.')
         print('Game over.')
         exit()
 print('')
 time.sleep(1)
 
 # === [kamer 5] === #
-
 print('Voorzichtig open je de deur, je wilt niet nog een zombie tegenkomen.')
 print(f'Tot je verbazig zie je een schatkist in het midden van de kamer staan.')
 print('Je loopt er naartoe.')
