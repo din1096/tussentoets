@@ -80,6 +80,7 @@ print('')
 time.sleep(1)
 
 # === [kamer 5] === #
+schat = 'schatkist'
 print('Voorzichtig open je de deur, je wilt niet nog een zombie tegenkomen.')
-print('Tot je verbazig zie je een schatkist in het midden van de kamer staan.')
+print(f'Tot je verbazig zie je een {schat} in het midden van de kamer staan.')
 print('Je loopt er naartoe.')
