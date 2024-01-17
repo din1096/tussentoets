@@ -27,8 +27,6 @@ elif antwoord != som:
     sleutel = False
     print('Er gebeurt niets....')
 
-print('Je ziet twee deuren achter het standbeeld.')
-
 print('je loopt naar de deur toe en maakt hem open')
 time.sleep(1)
 
@@ -36,7 +34,7 @@ time.sleep(1)
 zombie_attack = 1
 zombie_defense = 0
 zombie_health = 2
-print(f'Dapper met je nieuwe loop je de kamer binnen.')
+print(f'je loopt een kamer binnen.')
 print('Je loopt tegen een zombie aan.')
 
 zombie_hit_damage = (zombie_attack - player_defense)
