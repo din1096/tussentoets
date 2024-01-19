@@ -10,6 +10,13 @@ print('Het ruikt hier muf en vochtig.')
 print('Je ziet een deur voor je.')
 print('')
 time.sleep(1)
+# === [kamer 7] === #
+loot = []
+print('je komt een kamer binnen met verschillende schaten')
+print('je ziet in het midden van de kamer een grote diamant je pakt het op')
+
+
+
 
 # === [kamer 2] === #
 num1 = random.randint(10,25)
@@ -110,7 +117,7 @@ print('')
 time.sleep(1)
 
 # === [kamer 5] === #
-print('Voorzichtig open je de deur, je wilt niet nog een zombie tegenkomen.')
+print('Voorzichtig open je de deur, je wilt niet nog een monster tegenkomen.')
 print(f'Tot je verbazig zie je een schatkist in het midden van de kamer staan.')
 print('Je loopt er naartoe.')
 if sleutel == True:
