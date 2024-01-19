@@ -110,7 +110,7 @@ else:
         playerhealth = player_health - player_damage
         print(f'Je health is nu {playerhealth}.')
     else:
-        print('Helaas is de zombie te sterk voor je.')
+        print('Helaas is de spin te sterk voor je.')
         print('Game over.')
         exit()
 print('')

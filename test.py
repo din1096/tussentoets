@@ -1,27 +1,81 @@
 import random
 import time, math
 sleutel = False
-loot = []
+diamanten = 0
 player_attack = 1
 player_defense = 0
 player_health = 3
 
+def schatenkamer():
+  print('Voorzichtig open je de deur, je wilt niet nog een monster tegenkomen.')
+  print('Tot je verbazig zie je een schatkist in het midden van de kamer staan.')
+  print('Je loopt er naartoe.')
+  if sleutel == True:
+    print('je pakt de sleutel en maakt de schatkist open')
+    print('in de schatkist zit goud en diamanten')
+    exit()
+  else:
+    print('je krijgt de schatkist niet open')
+    exit()
+
+def spinenkamer():
+  spin_attack = 2
+  spin_defense = 0
+  spin_health = 3
+  print('Dapper met je nieuwe item loop je de kamer binnen.')
+  print('Je loopt tegen een spin aan.')
+
+  spin_hit_damage = (spin_attack - player_defense)
+  if spin_hit_damage <= 0:
+    print('Jij hebt een te goede verdedigign voor de spin, hij kan je geen schade doen.')
+  else:
+    spin_attack_amount = math.ceil(player_health / spin_hit_damage)
+    player_hit_damage = (player_attack - spin_defense)
+    player_attack_amount = math.ceil(spin_health / player_hit_damage)
+
+    if player_attack_amount < spin_attack_amount:
+        print(f'In {player_attack_amount} rondes versla je de spin.')
+        player_damage = player_attack_amount * spin_attack
+        playerhealth = player_health - player_damage
+        print(f'Je health is nu {playerhealth}.')
+    else:
+        print('Helaas is de spin te sterk voor je.')
+        print('Game over.')
+        exit()
+  schatenkamer()
+
 def wapenkamer():
   global player_attack
   global player_defense
+  global diamanten
   print('je komt een nieuwe kamer binnen en ziet een goblin')
   print('hij zegt dat hij je iets kan verkopen als je een diamant hebt')
-  print('hij zegt dat je een schild of een zwaard kan kopen')
-  keuzes = ['zwaard','schilf']
-  userInput = ""
-  while userInput not in keuzes:
+  print(f'je hebt {diamanten} diamanten')
+  if diamanten == 1:
+    print('hij zegt dat je een schild of een zwaard kan kopen')
+    userInput = ""
     print('opties: zwaard/schild')
+    userInput = input()
     if userInput == 'zwaard':
+     print('je koos het zwaard')
+     diamanten - 1
      player_attack += 2
     elif userInput  == 'schild':
-     player_defense += 2
-
-
+     print('je koos het schild')
+     diamanten - 1
+     player_defense += 1
+  elif diamanten >= 2:
+    print('je kan een schild en het zwaard kopen')
+    print('wil je ze allebij kopen')
+    userInput = ''
+    print('opties:ja/nee')
+    userInput = input()
+    if userInput == 'ja':
+      print('je hebt het schild en het zwaard')
+      diamanten - 2
+      player_defense += 1
+      player_attack += 2
+  spinenkamer()
 
 
 
@@ -57,6 +111,7 @@ def zombiekamer():
 def puzzelkamer():
   num1 = random.randint(10,25)
   num2 = random.randint(-5,75)
+  global sleutel
   print('Je stapt door de deur heen en je ziet een standbeeld voor je.')
   print('Het standbeeld heeft een sleutel vast.')
   print('Op zijn borst zit een numpad met de toesten 9 t/m 0.')
@@ -71,7 +126,7 @@ def puzzelkamer():
     sleutel = False
     print('Er gebeurt niets....')
     
-  print('je ziet twee verschillende kanten')
+  print('je ziet twee verschillende deuren')
   print('welke kant wil je naartoe')
   kanten = ['links','boven']
   userInput = ""
@@ -83,11 +138,9 @@ def puzzelkamer():
      elif userInput == 'boven':
        wapenkamer()
 
-  
-
 def diamantenkamer():
-  global loot
-  loot.append('diamanten')
+  global diamanten
+  diamanten += 1
   print('je komt een kamer binnen met verschillende schaten')
   print('je ziet in het midden van de kamer een grote diamant je pakt het op')
   print('je ziet twee verschillende deuren')
@@ -103,31 +156,13 @@ def diamantenkamer():
     else:
       print('print en valid option')
 
-
-
 def introscene():
-  kanten = ['links']
   print('Door de twee grote deuren loop je een gang binnen.')
   print('Het ruikt hier muf en vochtig.')
   print('Je ziet een deur voor je.')
-  print('wil je naar de volgende kamer')
-  userInput = ""
-  while userInput not in kanten:
-    print("Options: ja/nee")
-    userInput = input()
-    if userInput == "ja":
-      diamantenkamer()
-    else:
-      print('dat kan niet')
-  
+  diamantenkamer()
 
-
-
-if __name__ == "__main__":
-  while True:
-    print("je begint een dungeon te exploren op zoek naar schaten.")
-    print("je moet puzzels en monsters verslaan om te winne")
-    print("wat is je naam: ")
-    name = input()
-    print("veel geluk, " +name+ ".")
-    introscene()
+print("wat is je naam: ")
+name = input()
+print("veel geluk, " +name+ ".")
+introscene()
